@@ -7,9 +7,8 @@
   .leftside {
     width: 33%;
     padding: 2rem;
-    // margin:0 5%;
 
-    border-right: 2px solid rgb(99, 94, 94);
+    border-right: 2px solid rgba(92, 91, 91,1);
 
     &__questions {
       padding: .3rem;
@@ -20,12 +19,13 @@
         display: flex;
         align-items: center;
 
-        .icon{
+        .icon {
           position: relative;
           margin-left: 1rem;
-          top:4px;
+          top: 4px;
           cursor: pointer;
-          :hover{
+
+          :hover {
             color: rgb(199, 14, 14);
           }
         }
@@ -39,13 +39,27 @@
   }
 
   .middleside {
-    width: 33%;
-    padding: 2rem;
+    @extend .leftside;
+
+    &__vote-container {
+      display: flex;
+      flex-direction: column;
+    
+
+      &__radios{
+        margin: 3rem 0
+      }
+
+      &__btn{
+        
+      }
+
+    }
   }
 
   .rightside {
-    width: 33%;
+    @extend .leftside;
+    border: none
   }
-
 
 }
