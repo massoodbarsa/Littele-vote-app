@@ -8,7 +8,7 @@
     width: 33%;
     padding: 2rem;
 
-    border-right: 2px solid rgba(92, 91, 91,1);
+    border-right: 2px solid rgba(92, 91, 91, 1);
 
     &__questions {
       padding: .3rem;
@@ -44,22 +44,32 @@
     &__vote-container {
       display: flex;
       flex-direction: column;
-    
 
-      &__radios{
+
+      &__radios {
         margin: 3rem 0
       }
 
-      &__btn{
-        
-      }
+      &__btn {}
 
     }
   }
 
   .rightside {
     @extend .leftside;
-    border: none
+    border: none;
+
+    &__slider{
+      height: 400px;
+    }
+    .MuiSlider-valueLabel {
+      color: green;
+      left: -12px;
+    }
+
+    .MuiSlider-vertical {
+      color: rgb(41, 36, 36);
+    }
   }
 
 }

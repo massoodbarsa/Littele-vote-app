@@ -29,6 +29,12 @@ export default function LeftComp() {
         setNewItem('')
     }
 
+    const handlePressEnter = (e) => {
+        if (e.keyCode === 13) {
+            handleAddItem()
+        }
+    }
+
     return (
         <div className='leftside'>
             <TextField
@@ -67,6 +73,7 @@ export default function LeftComp() {
                         margin='normal'
                         size='small'
                         onChange={(e) => setNewItem(e.target.value)}
+                        onKeyDown={(e) => handlePressEnter(e)}
                     />
                     <section className='icon'>
                         <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem} />
