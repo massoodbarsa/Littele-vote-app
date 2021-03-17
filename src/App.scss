@@ -3,5 +3,46 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
-}
 
+  .leftside {
+    width: 33%;
+    padding-top: 2rem;
+    margin-left: 5%;
+    border-right: 2px solid rgb(99, 94, 94);
+
+    &__questions {
+      padding: .3rem;
+      margin-top: 2rem;
+
+      &__item {
+        margin: 1rem;
+        display: flex;
+        align-items: center;
+        .del-icon{
+          position: relative;
+          margin-left: 1rem;
+          top:4px;
+          cursor: pointer;
+          :hover{
+            color: rgb(199, 14, 14);
+          }
+        }
+      }
+
+    }
+
+    .MuiTextField-root {
+      width: 90%;
+    }
+  }
+
+  .middleside {
+    width: 33%;
+  }
+
+  .rightside {
+    width: 33%;
+  }
+
+
+}
