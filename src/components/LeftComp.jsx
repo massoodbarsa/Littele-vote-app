@@ -10,9 +10,8 @@ export default function LeftComp() {
 
     const [vote, setVote] = useState(context.voteItems)
     const [title, setTitle] = useState('')
-    const [newItem, setNewItem] = useState(null)
+    const [newItem, setNewItem] = useState('')
 
-    // console.log(vote);
 
     useEffect(() => {
         context.addTitle(title)
@@ -50,8 +49,9 @@ export default function LeftComp() {
                                     disabled={true}
                                     variant='outlined'
                                     size='small'
+
                                 />
-                                <section className='del-icon'>
+                                <section className='icon'>
                                     <FontAwesomeIcon icon={faTrash} size='1x' onClick={() => handleDelete(item)} />
                                 </section>
                             </div>
@@ -68,11 +68,13 @@ export default function LeftComp() {
                         size='small'
                         onChange={(e) => setNewItem(e.target.value)}
                     />
-                    <section className='del-icon'>
+                    <section className='icon'>
                         <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem} />
                     </section>
                 </div>
             </div>
+
+            <div></div>
 
         </div>
     )

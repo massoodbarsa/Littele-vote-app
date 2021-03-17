@@ -6,8 +6,9 @@
 
   .leftside {
     width: 33%;
-    padding-top: 2rem;
-    margin-left: 5%;
+    padding: 2rem;
+    // margin:0 5%;
+
     border-right: 2px solid rgb(99, 94, 94);
 
     &__questions {
@@ -18,7 +19,8 @@
         margin: 1rem;
         display: flex;
         align-items: center;
-        .del-icon{
+
+        .icon{
           position: relative;
           margin-left: 1rem;
           top:4px;
@@ -38,6 +40,7 @@
 
   .middleside {
     width: 33%;
+    padding: 2rem;
   }
 
   .rightside {

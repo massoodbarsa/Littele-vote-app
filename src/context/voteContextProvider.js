@@ -29,6 +29,12 @@ export default class voteContextProvider extends Component {
         })
     }
 
+    updateItemInput = (item) => {
+        this.setState({
+            voteItems: item
+        })
+    }
+
     valueObj = {
         addTitle: this.addTitle,
         updateItems: this.updateItems,
