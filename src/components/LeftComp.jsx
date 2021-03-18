@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
 import { Button, TextField } from '@material-ui/core';
-import './LeftComp.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faFolderPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -24,7 +23,6 @@ export default function LeftComp() {
     }
 
     const handleAddItem = () => {
-        console.log(newItem);
         context.addItem(newItem)
         setNewItem('')
     }
@@ -35,9 +33,15 @@ export default function LeftComp() {
         }
     }
 
+    const handleReset = () => {
+        setTitle('')
+        context.resetState()
+    }
+
     return (
         <div className='leftside'>
             <TextField
+                value={title}
                 margin='normal'
                 label="Subject"
                 size='medium'
@@ -81,7 +85,20 @@ export default function LeftComp() {
                 </div>
             </div>
 
-            <div></div>
+            <div className='leftside__buttom'>
+                <p>
+                    <span className='usedAnswer'>{context.voteItems.length} </span> / <span className='limit'>10 </span>
+                    Possible answers
+                </p>
+                <Button
+                    color='secondary'
+                    variant="outlined"
+                    onClick={handleReset}
+                >
+                    Reset
+                </Button>
+
+            </div>
 
         </div>
     )

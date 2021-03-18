@@ -7,7 +7,7 @@ export default class voteContextProvider extends Component {
     state = {
         voteItems: [],
         title: '',
-        votes: [{ 'item': 'salam', 'point': 1 }]
+        votes: []
     }
 
     addTitle = (title) => {
@@ -24,7 +24,6 @@ export default class voteContextProvider extends Component {
 
 
     addItem = (item) => {
-        console.log(item);
         this.setState({
             voteItems: [...this.state.voteItems, item]
         })
@@ -35,25 +34,18 @@ export default class voteContextProvider extends Component {
             voteItems: item
         })
     }
-    ///////////////////////
+
     updateVotes = (radio) => {
 
         const value = { 'item': radio, 'point': 1 }
 
-        const newVotes = [...this.state.votes]
-
         const notExist = this.state.votes.filter(i => {
             return i.item !== radio
         })
-        // console.log('notExist   ');
-        // console.log(notExist);
 
         const exist = this.state.votes.filter(i => {
             return i.item === radio
         })
-
-        // console.log('exist   ');
-        // console.log(exist);
 
         if (exist.length === 0) {
             console.log('add');
@@ -70,14 +62,20 @@ export default class voteContextProvider extends Component {
 
     }
 
+    resetState = () => {
+        this.setState({
+            voteItems: [],
+            title: ''
+        })
+    }
+
     valueObj = {
         addTitle: this.addTitle,
         updateItems: this.updateItems,
         addItem: this.addItem,
-        updateVotes: this.updateVotes
+        updateVotes: this.updateVotes,
+        resetState: this.resetState
     }
-
-
 
     render() {
         return (

@@ -33,6 +33,20 @@
 
     }
 
+    &__buttom {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      margin-top: 2rem;
+
+      .usedAnswer{
+        color: green;
+      }
+      .limit{
+        color: red;
+      }
+    }
+
     .MuiTextField-root {
       width: 90%;
     }
@@ -59,9 +73,11 @@
     @extend .leftside;
     border: none;
 
-    &__slider{
+    &__slider {
+      margin-top: 2rem;
       height: 400px;
     }
+
     .MuiSlider-valueLabel {
       color: green;
       left: -12px;

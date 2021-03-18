@@ -1,4 +1,3 @@
-import './MiddleComp.scss'
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
 import { FormControlLabel, Radio, RadioGroup, FormControl, Button } from '@material-ui/core';
@@ -28,7 +27,7 @@ export default function MiddleComp() {
                             {
                                 context.voteItems.map((item, index) => {
                                     return (
-                                        <FormControlLabel value={item} control={<Radio />} label={item} />
+                                        <FormControlLabel value={item} control={<Radio />} label={item} key={index}/>
                                     )
                                 })
                             }
