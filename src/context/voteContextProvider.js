@@ -65,7 +65,8 @@ export default class voteContextProvider extends Component {
     resetState = () => {
         this.setState({
             voteItems: [],
-            title: ''
+            title: '',
+            votes:[]
         })
     }
 

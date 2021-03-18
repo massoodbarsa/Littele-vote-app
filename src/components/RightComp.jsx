@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 
 export default function RightComp() {
@@ -19,7 +19,7 @@ export default function RightComp() {
     const [labels, setLabels] = useState()
 
     const chartData = {
-        // labels: ['Boston', 'Chicago', 'Nevada', 'Boston', 'Chicago', 'Nevada', 'Nevada', 'Boston', 'Chicago', 'Nevada'],
+
         labels: labels,
         datasets: [
             {
@@ -37,9 +37,41 @@ export default function RightComp() {
                     'rgb(156,16,235)',
                     'rgb(71,11,105)'
 
-                ]
+                ],
+
             }
         ]
+    }
+
+    const optionData = {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Vote',
+            fontSize: 20,
+        },
+        legend: {
+            display: true,
+            position: 'bottom',
+        },
+        scales: {
+            xAxes: [
+                {
+                    stacked: true,
+
+                },
+            ],
+            yAxes: [
+                {
+                    stacked: true,
+                    ticks: {
+                        display: true,
+                        // reverse: true,
+                    },
+                },
+            ],
+        }
+
     }
 
     return (
@@ -47,11 +79,10 @@ export default function RightComp() {
             <section >
                 <Bar
                     data={chartData}
+                    options={optionData}
                     width={100}
                     height={100}
-                // options={{ maintainAspectRatio: false }}
                 />
-
             </section>
         </div>
     )
