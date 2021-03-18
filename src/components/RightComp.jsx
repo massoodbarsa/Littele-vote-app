@@ -47,7 +47,7 @@ export default function RightComp() {
         responsive: true,
         title: {
             display: true,
-            text: 'Vote',
+            text: context.title.charAt(0).toUpperCase() + context.title.slice(1),
             fontSize: 20,
         },
         legend: {
