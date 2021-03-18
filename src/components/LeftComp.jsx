@@ -3,7 +3,7 @@ import { VoteContext } from '../context/voteContextProvider'
 import { Button, TextField } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faFolderPlus } from '@fortawesome/free-solid-svg-icons'
-import { Snackbar } from '@material-ui/core';
+import Snack from './Snack';
 
 
 export default function LeftComp() {
@@ -12,9 +12,9 @@ export default function LeftComp() {
     const [vote, setVote] = useState(context.voteItems)
     const [title, setTitle] = useState('')
     const [newItem, setNewItem] = useState('')
-    const [snackbar, setSnackbar] = useState(false)
     const [error, setError] = useState(false)
-
+    const [snackbar, setSnackbar] = useState(false)
+    const [message, setMessage] = useState('')
 
 
     useEffect(() => {
@@ -30,12 +30,21 @@ export default function LeftComp() {
     const handleAddItem = () => {
 
         if (context.voteItems.length >= 10) {
+            setMessage(' You can create a poll with up to 10 options')
             setSnackbar(true)
+            return
         }
         if (newItem === '') {
             setError(true)
             return
         }
+        if (context.voteItems.includes(newItem)) {
+            setMessage('You have already select this item')
+            setSnackbar(true)
+            return
+        }
+
+        console.log(context.voteItems.includes(newItem));
         context.addItem(newItem)
         setNewItem('')
         setError(false)
@@ -54,12 +63,7 @@ export default function LeftComp() {
     }
 
 
-    const handleCloseSnackbar = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setSnackbar(false);
-    };
+  
 
     return (
         <div className='leftside'>
@@ -123,18 +127,7 @@ export default function LeftComp() {
                 </Button>
 
             </div>
-
-            <div className='snackbar'>
-                <Snackbar
-                    message=' You can create a poll with up to 10 options'
-                    key={'top' + 'center'}
-                    open={snackbar}
-                    autoHideDuration={3000}
-                    onClose={handleCloseSnackbar}
-                >
-
-                </Snackbar>
-            </div>
+            <Snack open={snackbar} closeSnack={()=>setSnackbar(false)} message={message}/>
 
         </div>
     )
