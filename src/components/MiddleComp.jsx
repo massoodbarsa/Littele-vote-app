@@ -12,10 +12,14 @@ export default function MiddleComp() {
     //     console.log(radio);
     // }
 
-    const handleVote=()=>{
+    const handleVote = () => {
 
         context.updateVotes(radio)
     }
+
+
+    console.log(context.voteItems.length)
+
     return (
         <div className='middleside'>
             <h2>{context.title}</h2>
@@ -27,7 +31,7 @@ export default function MiddleComp() {
                             {
                                 context.voteItems.map((item, index) => {
                                     return (
-                                        <FormControlLabel value={item} control={<Radio />} label={item} key={index}/>
+                                        <FormControlLabel value={item} control={<Radio />} label={item} key={index} />
                                     )
                                 })
                             }
@@ -36,14 +40,16 @@ export default function MiddleComp() {
                     </FormControl>
                 </div>
 
-                <Button
-                    color='primary'
-                    variant="outlined"
-                    className='middleside__vote-container__btn'
-                    onClick={handleVote}
-                >
-                    Vote
+                {
+                    context.voteItems.length > 1 && <Button
+                        color='primary'
+                        variant="outlined"
+                        className='middleside__vote-container__btn'
+                        onClick={handleVote}
+                    >
+                        Vote
                </Button>
+                }
             </section>
 
 
