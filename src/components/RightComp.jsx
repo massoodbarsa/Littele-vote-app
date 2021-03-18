@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
-import Slide from './Slide'
-
 import { Bar } from 'react-chartjs-2';
 
 
@@ -10,17 +8,23 @@ export default function RightComp() {
     const context = useContext(VoteContext)
 
     useEffect(() => {
-        // setstate(context.votes)
+        setLabels(context.votes.map(i => i.item))
     }, [context.votes])
 
-    const [chartData, setChartData] = useState({
-        labels: ['Boston', 'Chicago', 'Nevada', 'Boston', 'Chicago', 'Nevada', 'Nevada', 'Boston', 'Chicago', 'Nevada'],
+    useEffect(() => {
+        setData(context.votes.map(i => i.point))
+    }, [context.votes])
+
+    const [data, setData] = useState()
+    const [labels, setLabels] = useState()
+
+    const chartData = {
+        // labels: ['Boston', 'Chicago', 'Nevada', 'Boston', 'Chicago', 'Nevada', 'Nevada', 'Boston', 'Chicago', 'Nevada'],
+        labels: labels,
         datasets: [
             {
                 label: 'Votes',
-                data: [
-                    42, 34, 56, 67, 65, 43, 100, 65, 102, 43
-                ],
+                data: data,
                 backgroundColor: [
                     'rgb(35,217,238)',
                     'rgb(123,194,202)',
@@ -36,44 +40,18 @@ export default function RightComp() {
                 ]
             }
         ]
-    })
-
-
-    // console.log(state);
+    }
 
     return (
         <div className='rightside'>
             <section >
-
-
-
                 <Bar
                     data={chartData}
                     width={100}
-                    height={50}
+                    height={100}
                 // options={{ maintainAspectRatio: false }}
                 />
 
-
-
-
-
-                {
-                    // state.map((item, index) => {
-                    //     return (
-                    //         <div key={index} >
-                    //             {/* <Slide value={item} /> */}
-
-                    //             <Bar
-                    //                   data={item.point}
-                    //                 width={100}
-                    //                 height={50}
-                    //                 options={{ maintainAspectRatio: false }}
-                    //             />
-                    //         </div>
-                    //     )
-                    // })
-                }
             </section>
         </div>
     )
