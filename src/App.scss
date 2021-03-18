@@ -39,11 +39,18 @@
       padding: 1rem;
       margin-top: 2rem;
 
-      .usedAnswer{
+      .usedAnswer {
         color: green;
       }
-      .limit{
+
+      .limit {
         color: red;
+      }
+    }
+
+    .snackbar {
+      .MuiSnackbarContent-root {
+        background-color: red;
       }
     }
 
@@ -88,4 +95,10 @@
     }
   }
 
+  .input-error{
+    .MuiInputBase-input{
+      border: 2px solid red;
+      border-radius: 5px;
+    }
+  }
 }

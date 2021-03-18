@@ -3,6 +3,8 @@ import { VoteContext } from '../context/voteContextProvider'
 import { Button, TextField } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faFolderPlus } from '@fortawesome/free-solid-svg-icons'
+import { Snackbar } from '@material-ui/core';
+
 
 export default function LeftComp() {
     const context = useContext(VoteContext)
@@ -10,6 +12,9 @@ export default function LeftComp() {
     const [vote, setVote] = useState(context.voteItems)
     const [title, setTitle] = useState('')
     const [newItem, setNewItem] = useState('')
+    const [snackbar, setSnackbar] = useState(false)
+    const [error, setError] = useState(false)
+
 
 
     useEffect(() => {
@@ -23,8 +28,17 @@ export default function LeftComp() {
     }
 
     const handleAddItem = () => {
+
+        if (context.voteItems.length >= 10) {
+            setSnackbar(true)
+        }
+        if (newItem === '') {
+            setError(true)
+            return
+        }
         context.addItem(newItem)
         setNewItem('')
+        setError(false)
     }
 
     const handlePressEnter = (e) => {
@@ -35,8 +49,17 @@ export default function LeftComp() {
 
     const handleReset = () => {
         setTitle('')
+        setError(false)
         context.resetState()
     }
+
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbar(false);
+    };
 
     return (
         <div className='leftside'>
@@ -78,6 +101,7 @@ export default function LeftComp() {
                         size='small'
                         onChange={(e) => setNewItem(e.target.value)}
                         onKeyDown={(e) => handlePressEnter(e)}
+                        className={error ? 'input-error' : ''}
                     />
                     <section className='icon'>
                         <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem} />
@@ -98,6 +122,18 @@ export default function LeftComp() {
                     Reset
                 </Button>
 
+            </div>
+
+            <div className='snackbar'>
+                <Snackbar
+                    message=' You can create a poll with up to 10 options'
+                    key={'top' + 'center'}
+                    open={snackbar}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                >
+
+                </Snackbar>
             </div>
 
         </div>
