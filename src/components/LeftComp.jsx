@@ -58,6 +58,7 @@ export default function LeftComp() {
 
     const handleReset = () => {
         setTitle('')
+        setNewItem('')
         setError(false)
         context.resetState()
     }
