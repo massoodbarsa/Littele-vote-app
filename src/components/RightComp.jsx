@@ -43,11 +43,19 @@ export default function RightComp() {
         ]
     }
 
+    const pointsArray = context.votes.map(item => item.point)
+
+    const getSum = (total, num) => {
+        return total + num;
+    }
+
+    const totalVotes = pointsArray.reduce(getSum, 0)
+
     const optionData = {
         responsive: true,
         title: {
             display: true,
-            text: context.title.charAt(0).toUpperCase() + context.title.slice(1),
+            text: `Totale votes : ${totalVotes}`,
             fontSize: 20,
         },
         legend: {

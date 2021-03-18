@@ -17,9 +17,6 @@ export default function MiddleComp() {
         context.updateVotes(radio)
     }
 
-
-    console.log(context.voteItems.length)
-
     return (
         <div className='middleside'>
             <h2>{context.title}</h2>
@@ -41,18 +38,17 @@ export default function MiddleComp() {
                 </div>
 
                 {
-                    context.voteItems.length > 1 && <Button
+                    context.voteItems.length > 1 &&
+                    <Button
                         color='primary'
                         variant="outlined"
                         className='middleside__vote-container__btn'
                         onClick={handleVote}
                     >
                         Vote
-               </Button>
+                     </Button>
                 }
             </section>
-
-
         </div>
     )
 }
