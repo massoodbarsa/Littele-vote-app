@@ -95,10 +95,26 @@
     }
   }
 
-  .input-error{
-    .MuiInputBase-input{
+  .input-error {
+    .MuiInputBase-input {
       border: 2px solid red;
       border-radius: 5px;
     }
   }
+
+}
+
+.header {
+  height: 80px;
+  background-color: rgb(71, 67, 67);
+  font-family: 'Courier New', Courier, monospace;
+
+
+  h2 {
+    position: relative;
+    padding-left: 2rem;
+    padding-top: 20px;
+    color: honeydew;
+  }
+
 }
