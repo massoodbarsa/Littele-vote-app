@@ -15,8 +15,6 @@ export default function MiddleComp() {
         context.updateVotes(radio)
     }
 
-    console.log(context.voteItems);
-
     return (
         <div className='middleside'>
             <h2 className='middleside__title'>{context.title}</h2>
