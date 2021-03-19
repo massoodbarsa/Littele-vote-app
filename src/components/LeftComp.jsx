@@ -57,6 +57,7 @@ export default function LeftComp() {
         context.resetState()
     }
 
+
     return (
         <div className='leftside'>
             <TextField
@@ -91,9 +92,12 @@ export default function LeftComp() {
                         onKeyDown={(e) => handlePressEnter(e)}
                         className={error ? 'input-error' : ''}
                         inputProps={{ maxLength: 30 }}
+                        disabled={context.voteItems.length === 10 ? true : false}
+
                     />
                     <section className='icon'>
-                        <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem} />
+                        <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem}
+                        />
                     </section>
                 </div>
             </div>
