@@ -9,6 +9,9 @@ export default function MiddleComp() {
 
     const handleVote = () => {
 
+        if (radio.length === 0) {
+            return
+        }
         context.updateVotes(radio)
     }
 
