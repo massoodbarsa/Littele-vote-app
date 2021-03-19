@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
 import { FormControlLabel, Radio, RadioGroup, FormControl, Button } from '@material-ui/core';
 
@@ -14,6 +14,8 @@ export default function MiddleComp() {
         }
         context.updateVotes(radio)
     }
+
+    console.log(context.voteItems);
 
     return (
         <div className='middleside'>

@@ -15,7 +15,8 @@ function App() {
           <MiddleComp />
           <RightComp />
         </VoteContextProvider>
-      </div></>
+      </div>
+    </>
   );
 }
 

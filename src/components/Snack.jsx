@@ -25,6 +25,5 @@ export default function Snack({ open, closeSnack, message }) {
             >
             </Snackbar>
         </div>
-
     )
 }
