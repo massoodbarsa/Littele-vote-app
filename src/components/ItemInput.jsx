@@ -20,7 +20,6 @@ export default function ItemInput({ item }) {
                 variant='outlined'
                 size='small'
                 inputProps={{ maxLength: 30 }}
-
             />
             <section className='icon'>
                 <FontAwesomeIcon icon={faTrash} size='1x' onClick={() => handleDelete(item)} />
