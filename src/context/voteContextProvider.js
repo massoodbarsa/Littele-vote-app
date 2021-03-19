@@ -26,7 +26,7 @@ export default class voteContextProvider extends Component {
 
     addItem = (item, id) => {
 
-        const value = { 'item': item, 'id': id }
+        const value = { 'item': item, 'id': id, 'point': 0 }
 
         this.setState({
             voteItems: [...this.state.voteItems, value]
@@ -40,28 +40,18 @@ export default class voteContextProvider extends Component {
     }
 
     updateVotes = (radio) => {
+        const copyVoteArray = [...this.state.voteItems]
 
-        const value = { 'item': radio, 'point': 1 }
-
-        const notExist = this.state.votes.filter(i => {
-            return i.item !== radio
+        const newVoteArray = copyVoteArray.map(i => {
+            if (i.item === radio) {
+                i.point += 1
+            }
+            return i
         })
 
-        const exist = this.state.votes.filter(i => {
-            return i.item === radio
+        this.setState({
+            votes: [...newVoteArray]
         })
-
-        if (exist.length === 0) {
-            this.setState({
-                votes: [...this.state.votes, value]
-            })
-
-        } else {
-            const newValue = { 'item': exist[0].item, 'point': parseInt(exist[0].point) + 1 }
-            this.setState({
-                votes: [...notExist, newValue]
-            })
-        }
 
     }
 
@@ -70,15 +60,15 @@ export default class voteContextProvider extends Component {
             voteItems: [],
             title: '',
             votes: [],
-            disableInputs:!this.state.disableInputs
+            disableInputs: !this.state.disableInputs
         })
     }
 
     updateInputs = (value, id) => {
 
-        const newVoteArray = [...this.state.voteItems]
+        const copyVoteArray = [...this.state.voteItems]
 
-        const test = newVoteArray.map(i => {
+        const newVoteArray = copyVoteArray.map(i => {
             if (i.id === id) {
                 i.item = value
             }
@@ -86,14 +76,14 @@ export default class voteContextProvider extends Component {
         })
 
         this.setState({
-            voteItems: [...test]
+            voteItems: [...newVoteArray]
         })
     }
 
     disableChangeInput = () => {
-        
+
         this.setState({
-            disableInputs:true
+            disableInputs: true
         })
     }
 
