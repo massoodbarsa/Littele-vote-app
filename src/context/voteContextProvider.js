@@ -4,6 +4,7 @@ import { createContext } from 'react'
 export const VoteContext = createContext()
 
 export default class voteContextProvider extends Component {
+
     state = {
         voteItems: [],
         title: '',
@@ -22,9 +23,12 @@ export default class voteContextProvider extends Component {
         })
     }
 
-    addItem = (item) => {
+    addItem = (item, id) => {
+
+        const value = { 'item': item, 'id': id }
+
         this.setState({
-            voteItems: [...this.state.voteItems, item]
+            voteItems: [...this.state.voteItems, value]
         })
     }
 
@@ -47,7 +51,6 @@ export default class voteContextProvider extends Component {
         })
 
         if (exist.length === 0) {
-            console.log('add');
             this.setState({
                 votes: [...this.state.votes, value]
             })
@@ -69,12 +72,31 @@ export default class voteContextProvider extends Component {
         })
     }
 
+    updateInputs = (value, id) => {
+
+        const newVoteArray = [...this.state.voteItems]
+
+        const existItem = newVoteArray.filter(i => {
+            return i.id === id
+        })
+
+        const notExistItem = newVoteArray.filter(i => {
+            return i.id !== id
+        })
+
+        this.setState({
+            voteItems: [...notExistItem, { item: value, id: id }]
+        })
+    }
+
+
     valueObj = {
         addTitle: this.addTitle,
         deleteItems: this.deleteItems,
         addItem: this.addItem,
         updateVotes: this.updateVotes,
         resetState: this.resetState,
+        updateInputs: this.updateInputs
     }
 
     render() {

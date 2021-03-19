@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 
 export default function RightComp() {
@@ -17,6 +17,7 @@ export default function RightComp() {
 
     const [data, setData] = useState()
     const [labels, setLabels] = useState()
+
 
     const chartData = {
 
@@ -74,7 +75,6 @@ export default function RightComp() {
                     stacked: true,
                     ticks: {
                         display: true,
-                        // reverse: true,
                     },
                 },
             ],

@@ -7,11 +7,6 @@ export default function MiddleComp() {
     const context = useContext(VoteContext)
     const [radio, setRadio] = useState('')
 
-    // console.log(context);
-    // const handleChange = () => {
-    //     console.log(radio);
-    // }
-
     const handleVote = () => {
 
         context.updateVotes(radio)
@@ -26,9 +21,9 @@ export default function MiddleComp() {
                     <FormControl component="fieldset">
                         <RadioGroup name="gender1" value={radio} onChange={(e) => setRadio(e.target.value)}>
                             {
-                                context.voteItems.map((item, index) => {
+                                context.voteItems.map((i, index) => {
                                     return (
-                                        <FormControlLabel value={item} control={<Radio />} label={item} key={index} />
+                                        <FormControlLabel value={i.item} control={<Radio />} label={i.item} key={index} />
                                     )
                                 })
                             }

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
+import Uuid from 'react-uuid';
 import { Button, TextField } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons'
@@ -21,7 +22,6 @@ export default function LeftComp() {
         context.addTitle(title)
     }, [title])
 
-
     const handleAddItem = () => {
 
         if (context.voteItems.length >= 10) {
@@ -33,13 +33,18 @@ export default function LeftComp() {
             setError(true)
             return
         }
-        if (context.voteItems.includes(newItem)) {
+        const existingItem = context.voteItems.filter(i => {
+            return newItem === i.item
+        })
+
+        if (existingItem.length > 0) {
             setMessage('You have already select this item')
             setSnackbar(true)
             return
         }
 
-        context.addItem(newItem)
+        context.addItem(newItem, Uuid())
+
         setNewItem('')
         setError(false)
     }
@@ -57,7 +62,6 @@ export default function LeftComp() {
         context.resetState()
     }
 
-
     return (
         <div className='leftside'>
             <TextField
@@ -72,10 +76,11 @@ export default function LeftComp() {
             />
             <div className="leftside__questions">
                 {
-                    context.voteItems && context.voteItems.map((item, index) => {
+                    context.voteItems && context.voteItems.map(i => {
+
                         return (
-                            <div key={index}>
-                                <ItemInput item={item} />
+                            <div key={i.id}>
+                                <ItemInput item={i} />
                             </div>
                         )
                     })
