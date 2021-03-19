@@ -2,30 +2,25 @@ import React, { useContext, useState, useEffect } from 'react'
 import { VoteContext } from '../context/voteContextProvider'
 import { Button, TextField } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faFolderPlus } from '@fortawesome/free-solid-svg-icons'
+import { faFolderPlus } from '@fortawesome/free-solid-svg-icons'
 import Snack from './Snack';
+import ItemInput from './ItemInput';
 
 
 export default function LeftComp() {
+
     const context = useContext(VoteContext)
 
-    const [vote, setVote] = useState(context.voteItems)
     const [title, setTitle] = useState('')
     const [newItem, setNewItem] = useState('')
     const [error, setError] = useState(false)
     const [snackbar, setSnackbar] = useState(false)
     const [message, setMessage] = useState('')
 
-
     useEffect(() => {
         context.addTitle(title)
     }, [title])
 
-    const handleDelete = (item) => {
-        const newVote = context.voteItems.filter(i => i !== item)
-        // setVote(newVote)
-        context.updateItems(newVote)
-    }
 
     const handleAddItem = () => {
 
@@ -44,7 +39,6 @@ export default function LeftComp() {
             return
         }
 
-        console.log(context.voteItems.includes(newItem));
         context.addItem(newItem)
         setNewItem('')
         setError(false)
@@ -63,9 +57,6 @@ export default function LeftComp() {
         context.resetState()
     }
 
-
-  
-
     return (
         <div className='leftside'>
             <TextField
@@ -75,23 +66,15 @@ export default function LeftComp() {
                 size='medium'
                 variant='outlined'
                 onChange={(e) => setTitle(e.target.value)}
+                inputProps={{ maxLength: 80 }}
+
             />
             <div className="leftside__questions">
                 {
                     context.voteItems && context.voteItems.map((item, index) => {
                         return (
-                            <div className="leftside__questions__item" key={index}>
-
-                                <TextField
-                                    value={item}
-                                    disabled={true}
-                                    variant='outlined'
-                                    size='small'
-
-                                />
-                                <section className='icon'>
-                                    <FontAwesomeIcon icon={faTrash} size='1x' onClick={() => handleDelete(item)} />
-                                </section>
+                            <div key={index}>
+                                <ItemInput item={item} />
                             </div>
                         )
                     })
@@ -107,6 +90,7 @@ export default function LeftComp() {
                         onChange={(e) => setNewItem(e.target.value)}
                         onKeyDown={(e) => handlePressEnter(e)}
                         className={error ? 'input-error' : ''}
+                        inputProps={{ maxLength: 30 }}
                     />
                     <section className='icon'>
                         <FontAwesomeIcon icon={faFolderPlus} size='2x' onClick={handleAddItem} />
@@ -128,7 +112,7 @@ export default function LeftComp() {
                 </Button>
 
             </div>
-            <Snack open={snackbar} closeSnack={()=>setSnackbar(false)} message={message}/>
+            <Snack open={snackbar} closeSnack={() => setSnackbar(false)} message={message} />
 
         </div>
     )

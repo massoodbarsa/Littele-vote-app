@@ -19,7 +19,7 @@ export default function MiddleComp() {
 
     return (
         <div className='middleside'>
-            <h2>{context.title}</h2>
+            <h2 className='middleside__title'>{context.title}</h2>
 
             <section className='middleside__vote-container'>
                 <div className='middleside__vote-container__radios'>

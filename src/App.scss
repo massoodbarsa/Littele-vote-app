@@ -3,11 +3,12 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
+  box-sizing: border-box;
+
 
   .leftside {
     width: 33%;
     padding: 2rem;
-
     border-right: 2px solid rgba(92, 91, 91, 1);
 
     &__questions {
@@ -48,6 +49,7 @@
       }
     }
 
+
     .snackbar {
       .MuiSnackbarContent-root {
         background-color: red;
@@ -61,6 +63,11 @@
 
   .middleside {
     @extend .leftside;
+    &__title {
+      width: 100%;
+      overflow-x: scroll;
+      
+    }
 
     &__vote-container {
       display: flex;
@@ -121,4 +128,5 @@
 
 h2 {
   text-transform: capitalize;
+  font-size: 1.1rem;
 }

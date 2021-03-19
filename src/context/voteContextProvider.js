@@ -16,12 +16,11 @@ export default class voteContextProvider extends Component {
         })
     }
 
-    updateItems = (item) => {
+    deleteItems = (item) => {
         this.setState({
             voteItems: item
         })
     }
-
 
     addItem = (item) => {
         this.setState({
@@ -66,16 +65,16 @@ export default class voteContextProvider extends Component {
         this.setState({
             voteItems: [],
             title: '',
-            votes:[]
+            votes: []
         })
     }
 
     valueObj = {
         addTitle: this.addTitle,
-        updateItems: this.updateItems,
+        deleteItems: this.deleteItems,
         addItem: this.addItem,
         updateVotes: this.updateVotes,
-        resetState: this.resetState
+        resetState: this.resetState,
     }
 
     render() {
