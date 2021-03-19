@@ -12,7 +12,10 @@ export default function MiddleComp() {
         if (radio.length === 0) {
             return
         }
+
         context.updateVotes(radio)
+        context.disableChangeInput()
+
     }
 
     return (

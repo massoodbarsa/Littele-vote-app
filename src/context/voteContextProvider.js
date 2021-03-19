@@ -8,7 +8,8 @@ export default class voteContextProvider extends Component {
     state = {
         voteItems: [],
         title: '',
-        votes: []
+        votes: [],
+        disableInputs: false
     }
 
     addTitle = (title) => {
@@ -68,7 +69,8 @@ export default class voteContextProvider extends Component {
         this.setState({
             voteItems: [],
             title: '',
-            votes: []
+            votes: [],
+            disableInputs:!this.state.disableInputs
         })
     }
 
@@ -76,19 +78,24 @@ export default class voteContextProvider extends Component {
 
         const newVoteArray = [...this.state.voteItems]
 
-        const existItem = newVoteArray.filter(i => {
-            return i.id === id
-        })
-
-        const notExistItem = newVoteArray.filter(i => {
-            return i.id !== id
+        const test = newVoteArray.map(i => {
+            if (i.id === id) {
+                i.item = value
+            }
+            return i
         })
 
         this.setState({
-            voteItems: [...notExistItem, { item: value, id: id }]
+            voteItems: [...test]
         })
     }
 
+    disableChangeInput = () => {
+        
+        this.setState({
+            disableInputs:true
+        })
+    }
 
     valueObj = {
         addTitle: this.addTitle,
@@ -96,7 +103,9 @@ export default class voteContextProvider extends Component {
         addItem: this.addItem,
         updateVotes: this.updateVotes,
         resetState: this.resetState,
-        updateInputs: this.updateInputs
+        updateInputs: this.updateInputs,
+        disableChangeInput: this.disableChangeInput
+
     }
 
     render() {

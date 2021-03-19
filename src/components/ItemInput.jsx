@@ -21,7 +21,7 @@ export default function ItemInput({ item }) {
         <div className='leftside__questions__item'>
             <TextField
                 value={item.item}
-                // disabled={true}
+                disabled={context.disableInputs}
                 variant='outlined'
                 size='small'
                 onChange={(e) => handleEditInput(e.target.value, item.id)}
