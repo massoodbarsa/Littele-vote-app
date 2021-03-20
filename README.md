@@ -8,6 +8,7 @@ In the project directory, you can run:
 ### `npm install`
 ### `npm start`
 or
+### `yarn install`
 ### `yarn start`
 
 Runs the app in the development mode.\
@@ -15,6 +16,27 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+# Application 
+It is an application to take a vote. It includes three sections.
+
+# Leftside 
+This section structures the boilerplate of voting.
+Subject of voting 
+Fill in the input with vote items and add it to the voting list
+All added inputs are deletable and editable 
+Only 10 items should be added to the voting list
+Reset button to renew the page content
+
+# Middel page 
+Radio buttons alongside votings items.
+The voting button appears if at least 2 items appear on the voting list 
+By pushing the first vote in the chart the editing ability of inputs gets disabled.
+
+# Rightside
+Which contains a chart.
+This chart shows the scores of every candidate by means of dynamic bars.
+Total votes and individual votes are shown.
+
 
 ### `yarn test`
 
