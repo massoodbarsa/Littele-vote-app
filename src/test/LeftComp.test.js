@@ -1,3 +1,4 @@
+import LeftComp from '../components/LeftComp';
 
 
 const add =(a,b)=>{

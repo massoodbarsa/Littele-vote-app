@@ -24,7 +24,7 @@ export default function RightComp() {
         labels: labels,
         datasets: [
             {
-                label: 'Votes',
+                label: context.title,
                 data: data,
                 backgroundColor: [
                     'rgb(35,217,238)',
@@ -56,7 +56,7 @@ export default function RightComp() {
         responsive: true,
         title: {
             display: true,
-            text: `Totale votes : ${totalVotes}`,
+            text: `Total votes : ${totalVotes}`,
             fontSize: 20,
         },
         legend: {
